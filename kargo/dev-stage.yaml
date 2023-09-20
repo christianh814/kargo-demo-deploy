@@ -1,0 +1,24 @@
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Stage
+metadata:
+  name: dev
+  namesapce: kargo-demo
+  annotations:
+    kargo.akuity.io/color: red
+spec:
+  subscriptions:
+    repos:
+      images:
+      - repoURL: quay.io/christianh814/kargo-demo-app
+        ignoreTags:
+          - "latest"
+      git:
+      - repoURL: https://github.com/christianh814/kargo-demo-deploy
+        branch: main # Watch this branch for new commits
+  promotionMechanisms:
+    gitRepoUpdates:
+    - repoURL: https://github.com/christianh814/kargo-demo-deploy
+      writeBranch: env/dev
+      bookkeeper: {}
+    argoCDAppUpdates:
+    - appName: dev-app
