@@ -10,7 +10,7 @@ spec:
     repos:
       images:
       - repoURL: quay.io/christianh814/kargo-demo-app
-        updateStrategy: name
+        updateStrategy: Latest
         allowTags: '^[0-9a-f]{7}$'
       git:
       - repoURL: https://github.com/christianh814/kargo-demo-deploy
