@@ -10,8 +10,7 @@ spec:
     repos:
       images:
       - repoURL: quay.io/christianh814/kargo-demo-app
-        ignoreTags:
-          - "latest"
+        gitRepoURL: https://github.com/christianh814/kargo-demo-app
       git:
       - repoURL: https://github.com/christianh814/kargo-demo-deploy
         branch: main # Watch this branch for new commits
