@@ -1,0 +1,6 @@
+configVersion: v1alpha1
+branchConfigs:
+- pattern: env/(\w+)
+  appConfigs:
+    kargoDemo:
+      combineManifests: true
