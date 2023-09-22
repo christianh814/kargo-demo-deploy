@@ -9,7 +9,7 @@ spec:
       repoURL: https://github.com/christianh814/kargo-demo-deploy
       revision: HEAD
       directories:
-      - path: app/overlays//*
+      - path: app/overlays/*
   template:
     metadata:
       name: '{{path.basename}}-app'
