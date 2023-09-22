@@ -3,4 +3,8 @@ branchConfigs:
 - pattern: env/(\w+)
   appConfigs:
     kargoDemo:
+      configManagement:
+        kustomize:
+          path: env/${1}
+      outputPath: app
       combineManifests: true
