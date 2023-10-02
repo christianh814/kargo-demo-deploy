@@ -13,3 +13,4 @@ resources:
 - dev-promotionpolicy.yaml
 - produsw1-promotionpolicy.yaml
 - produsw2-promotionpolicy.yaml
+- kargo-ing.yaml
