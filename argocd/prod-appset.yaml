@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: kargo-demo-prodapps
+  namespace: argocd
+spec:
+  generators:
+  - list:
+      elements:
+        - location: produsw1
+          repo: https://github.com/christianh814/kargo-demo-deploy
+          env: prod
+        - location: produsw2
+          repo: https://github.com/christianh814/kargo-demo-deploy
+          env: prod
+  template:
+    metadata:
+      name: '{{location}}-app'
+      annotations:
+        kargo.akuity.io/authorized-stage: kargo-demo:{{location}}
+    spec:
+      project: default
+      source:
+        repoURL: '{{repo}}'
+        targetRevision: env/{{env}}
+        path: app # default for bookkeeper
+      destination:
+        name: in-cluster
+        namespace: '{{location}}-app'
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true

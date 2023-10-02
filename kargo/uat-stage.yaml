@@ -1,0 +1,18 @@
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Stage
+metadata:
+  name: uat
+  namespace: kargo-demo
+  annotations:
+    kargo.akuity.io/color: lime
+spec:
+  subscriptions:
+    upstreamStages:
+      - name: test
+  promotionMechanisms:
+    gitRepoUpdates:
+    - repoURL: https://github.com/christianh814/kargo-demo-deploy
+      writeBranch: env/uat
+      bookkeeper: {}
+    argoCDAppUpdates:
+    - appName: uat-app

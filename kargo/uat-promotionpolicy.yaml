@@ -1,0 +1,7 @@
+apiVersion: kargo.akuity.io/v1alpha1
+kind: PromotionPolicy
+metadata:
+  name: uat
+  namespace: kargo-demo
+stage: uat
+enableAutoPromotion: true
