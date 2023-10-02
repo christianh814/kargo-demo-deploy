@@ -5,7 +5,7 @@ metadata:
   name: prod
   namespace: kargo-demo
   annotations:
-    kargo.akuity.io/color: gray
+    kargo.akuity.io/color: sky
 spec:
   subscriptions:
     upstreamStages:
