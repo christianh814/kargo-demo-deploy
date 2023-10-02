@@ -2,12 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-- dev-promotionpolicy.yaml
-- dev-stage.yaml
 - ns.yaml
+- dev-stage.yaml
+- test-stage.yaml
+- uat-stage.yaml
 - prod-stage.yaml
 - produsw1-stage.yaml
 - produsw2-stage.yaml
-- test-stage.yaml
 - uat-promotionpolicy.yaml
-- uat-stage.yaml
+- dev-promotionpolicy.yaml
+- produsw1-promotionpolicy.yaml
+- produsw2-promotionpolicy.yaml
