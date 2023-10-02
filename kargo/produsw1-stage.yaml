@@ -5,7 +5,7 @@ metadata:
   name: produsw1
   namespace: kargo-demo
   annotations:
-    kargo.akuity.io/color: red
+    kargo.akuity.io/color: purple
 spec:
   subscriptions:
     upstreamStages:
