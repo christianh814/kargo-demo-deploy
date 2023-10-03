@@ -13,4 +13,4 @@ patches:
     patch: |
       - op: replace
         path: /spec/rules/0/host
-        value: prod.7f000001.nip.io
+        value: prod2.7f000001.nip.io

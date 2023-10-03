@@ -10,8 +10,6 @@ spec:
       revision: HEAD
       directories:
       - path: app/overlays/*
-      - path: app/overlays/prod
-        exclude: true
   template:
     metadata:
       name: '{{path.basename}}-app'

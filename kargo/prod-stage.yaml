@@ -10,8 +10,3 @@ spec:
   subscriptions:
     upstreamStages:
       - name: uat
-  promotionMechanisms:
-    gitRepoUpdates:
-    - repoURL: https://github.com/christianh814/kargo-demo-deploy
-      writeBranch: env/prod
-      bookkeeper: {}

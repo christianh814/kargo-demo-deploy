@@ -13,3 +13,7 @@ spec:
   promotionMechanisms:
     argoCDAppUpdates:
     - appName: produsw1-app
+    gitRepoUpdates:
+    - repoURL: https://github.com/christianh814/kargo-demo-deploy
+      writeBranch: env/produsw1
+      bookkeeper: {}
