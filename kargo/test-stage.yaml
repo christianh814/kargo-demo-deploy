@@ -13,6 +13,6 @@ spec:
     gitRepoUpdates:
     - repoURL: https://github.com/christianh814/kargo-demo-deploy
       writeBranch: env/test
-      bookkeeper: {}
+      render: {}
     argoCDAppUpdates:
     - appName: test-app

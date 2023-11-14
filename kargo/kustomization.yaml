@@ -3,6 +3,7 @@ kind: Kustomization
 
 resources:
 - ns.yaml
+- warehouse-demo.yaml
 - dev-stage.yaml
 - test-stage.yaml
 - uat-stage.yaml

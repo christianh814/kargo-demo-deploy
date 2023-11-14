@@ -16,4 +16,4 @@ spec:
     gitRepoUpdates:
     - repoURL: https://github.com/christianh814/kargo-demo-deploy
       writeBranch: env/produsw2
-      bookkeeper: {}
+      render: {}

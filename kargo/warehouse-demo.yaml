@@ -1,0 +1,16 @@
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Warehouse
+metadata:
+  name: kargo-demo
+  namespace: kargo-demo
+spec:
+  subscriptions:
+  - git:
+      repoURL: https://github.com/christianh814/kargo-demo-deploy
+      branch: main
+  - image:
+      repoURL: quay.io/christianh814/kargo-demo-app
+      updateStrategy: NewestBuild
+      #allowTags: '^[0-9a-f]{6}$'
+      ignoreTags:
+        - latest

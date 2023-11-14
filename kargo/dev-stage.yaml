@@ -7,20 +7,11 @@ metadata:
     kargo.akuity.io/color: red
 spec:
   subscriptions:
-    repos:
-      images:
-      - repoURL: quay.io/christianh814/kargo-demo-app
-        updateStrategy: Latest
-        #allowTags: '^[0-9a-f]{6}$'
-        ignoreTags:
-          - latest
-      git:
-      - repoURL: https://github.com/christianh814/kargo-demo-deploy
-        branch: main # Watch this branch for new commits
+    warehouse: kargo-demo
   promotionMechanisms:
     gitRepoUpdates:
     - repoURL: https://github.com/christianh814/kargo-demo-deploy
       writeBranch: env/dev
-      bookkeeper: {}
+      render: {}
     argoCDAppUpdates:
     - appName: dev-app
