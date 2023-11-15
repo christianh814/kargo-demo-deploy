@@ -1,1 +1,3 @@
-{}
+imageSubstitutions:
+- quay.io/christianh814/kargo-demo-app:940314
+sourceCommit: 7511d2c66e8e63b690a45b1419bad29249aaddac
