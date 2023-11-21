@@ -10,7 +10,8 @@ spec:
       branch: main
   - image:
       repoURL: quay.io/christianh814/kargo-demo-app
-      updateStrategy: NewestBuild
+      tagSelectionStrategy: NewestBuild
+      ##updateStrategy: NewestBuild
       #allowTags: '^[0-9a-f]{6}$'
       ignoreTags:
         - latest
