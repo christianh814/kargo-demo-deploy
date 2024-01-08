@@ -8,6 +8,9 @@ metadata:
 spec:
   subscriptions:
     warehouse: kargo-demo
+  verification:
+    analysisTemplates:
+    - name: kargo-demo
   promotionMechanisms:
     gitRepoUpdates:
     - repoURL: https://github.com/christianh814/kargo-demo-deploy

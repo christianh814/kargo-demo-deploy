@@ -9,6 +9,9 @@ spec:
   subscriptions:
     upstreamStages:
       - name: dev
+  verification:
+    analysisTemplates:
+    - name: kargo-demo
   promotionMechanisms:
     gitRepoUpdates:
     - repoURL: https://github.com/christianh814/kargo-demo-deploy

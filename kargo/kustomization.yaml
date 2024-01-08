@@ -7,11 +7,9 @@ resources:
 - dev-stage.yaml
 - test-stage.yaml
 - uat-stage.yaml
-- prod-stage.yaml
 - produsw1-stage.yaml
 - produsw2-stage.yaml
 - uat-promotionpolicy.yaml
 - dev-promotionpolicy.yaml
-- produsw1-promotionpolicy.yaml
-- produsw2-promotionpolicy.yaml
+- simple-analysistemplate.yaml
 - kargo-ing.yaml

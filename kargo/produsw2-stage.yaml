@@ -9,7 +9,10 @@ metadata:
 spec:
   subscriptions:
     upstreamStages:
-      - name: prod
+      - name: uat
+  verification:
+    analysisTemplates:
+    - name: kargo-demo
   promotionMechanisms:
     argoCDAppUpdates:
     - appName: produsw2-app

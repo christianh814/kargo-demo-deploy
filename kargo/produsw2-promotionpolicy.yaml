@@ -1,7 +1,0 @@
-apiVersion: kargo.akuity.io/v1alpha1
-kind: PromotionPolicy
-metadata:
-  name: produsw2
-  namespace: kargo-demo
-stage: produsw2
-enableAutoPromotion: true
