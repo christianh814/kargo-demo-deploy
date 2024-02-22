@@ -4,7 +4,6 @@ branchConfigs:
   appConfigs:
     kargoDemo:
       configManagement:
-        kustomize:
-          path: app/overlays/${1}
+        path: app/overlays/${1}
       outputPath: app
       combineManifests: true
