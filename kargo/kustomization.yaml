@@ -1,15 +1,12 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-
 resources:
-- ns.yaml
-- warehouse-demo.yaml
 - dev-stage.yaml
-- test-stage.yaml
-- uat-stage.yaml
+- kargo-ing.yaml
 - produsw1-stage.yaml
 - produsw2-stage.yaml
-- uat-promotionpolicy.yaml
-- dev-promotionpolicy.yaml
+- project.yaml
 - simple-analysistemplate.yaml
-- kargo-ing.yaml
+- test-stage.yaml
+- uat-stage.yaml
+- warehouse-demo.yaml
