@@ -4,3 +4,6 @@ kind: Kustomization
 resources:
 - ../argocd
 - ../kargo
+
+sortOptions:
+  order: fifo
