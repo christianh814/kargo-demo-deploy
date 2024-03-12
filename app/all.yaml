@@ -35,7 +35,7 @@ spec:
         app: kargo-demo-app
     spec:
       containers:
-      - image: quay.io/christianh814/kargo-demo-app:1be94e
+      - image: quay.io/christianh814/kargo-demo-app:v1.2.5
         name: kargo-demo-app
 ---
 apiVersion: networking.k8s.io/v1
