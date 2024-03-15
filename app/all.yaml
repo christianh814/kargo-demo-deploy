@@ -35,5 +35,27 @@ spec:
         app: kargo-demo-app
     spec:
       containers:
-      - image: quay.io/christianh814/kargo-demo-app:v1.2.5
+      - image: quay.io/christianh814/kargo-demo-app:4481d8
         name: kargo-demo-app
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    chx-version: v1.0
+  labels:
+    app: kargo-demo-app
+  name: kargo-demo-ing
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: test.7f000001.nip.io
+    http:
+      paths:
+      - backend:
+          service:
+            name: kargo-demo-app
+            port:
+              number: 8080
+        path: /
+        pathType: Prefix
