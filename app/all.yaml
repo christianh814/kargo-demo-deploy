@@ -42,7 +42,7 @@ spec:
         app: kargo-demo-app
     spec:
       containers:
-      - image: quay.io/christianh814/kargo-demo-app:v1.2.5
+      - image: quay.io/christianh814/kargo-demo-app:7b7dca
         name: kargo-demo-app
         volumeMounts:
         - mountPath: /app/config
