@@ -3,3 +3,20 @@ kind: Kustomization
 
 resources:
 - ../../base
+
+patches:
+  - path: deployment-patch.yaml
+  - target:
+      group: networking.k8s.io
+      version: v1
+      kind: Ingress
+      name: kargo-demo-ing
+    patch: |
+      - op: replace
+        path: /spec/rules/0/host
+        value: dev.7f000001.nip.io
+
+configMapGenerator:
+- name: kargo-demo-app-config
+  literals:
+    - greet.json='{"message":"Kargo is an awesome tool!"}'
