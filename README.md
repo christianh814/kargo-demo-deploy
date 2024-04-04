@@ -7,6 +7,7 @@ After setting up Kargo (with your secret to your git repo), run:
 (Assumes you've logged in with `kargo login`)
 
 ```
+kubectl apply -f kargo/kargo-ing.yaml
 kargo create project kargo-demo
 kargo create credentials \
 --project=kargo-demo kargo-demo-repo \
