@@ -8,9 +8,9 @@ spec:
   - git:
       repoURL: https://github.com/christianh814/kargo-demo-deploy
       branch: main
+      commitSelectionStrategy: SemVer
+      semverConstraint: '>= 1.2.3'
   - image:
       repoURL: quay.io/christianh814/kargo-demo-app
-      imageSelectionStrategy: NewestBuild
-      #allowTags: '^[0-9a-f]{6}$'
-      ignoreTags:
-        - latest
+      imageSelectionStrategy: SemVer
+      semverConstraint: '>= 1.2.3'
