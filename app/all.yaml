@@ -1,11 +1,4 @@
 apiVersion: v1
-data:
-  greet.json: '{"message":"Kargo is an awesome tool!"}'
-kind: ConfigMap
-metadata:
-  name: kargo-demo-app-config-tt6bb6629f
----
-apiVersion: v1
 kind: Service
 metadata:
   annotations:
@@ -44,13 +37,6 @@ spec:
       containers:
       - image: quay.io/christianh814/kargo-demo-app:v1.2.3
         name: kargo-demo-app
-        volumeMounts:
-        - mountPath: /app/config
-          name: config-file
-      volumes:
-      - configMap:
-          name: kargo-demo-app-config-tt6bb6629f
-        name: config-file
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
