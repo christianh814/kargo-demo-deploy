@@ -6,9 +6,13 @@ metadata:
   annotations:
     kargo.akuity.io/color: amber
 spec:
-  subscriptions:
-    upstreamStages:
-      - name: dev
+  requestedFreight:
+  - origin:
+      kind: Warehouse
+      name: kargo-demo
+    sources:
+      stages:
+      - dev
   verification:
     analysisTemplates:
     - name: kargo-demo
