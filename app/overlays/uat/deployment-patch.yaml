@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
       - name: kargo-demo-app
-        image: quay.io/christianh814/kargo-demo-app:latest
+        image: ghcr.io/christianh814/kargo-demo-app:latest
         volumeMounts:
           - name: config-file
             mountPath: /app/config
