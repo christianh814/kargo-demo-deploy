@@ -15,5 +15,5 @@ spec:
         app: kargo-demo-app
     spec:
       containers:
-      - image: quay.io/christianh814/kargo-demo-app:latest
+      - image: ghcr.io/christianh814/kargo-demo-app:latest
         name: kargo-demo-app

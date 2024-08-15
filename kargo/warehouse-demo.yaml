@@ -11,6 +11,6 @@ spec:
       commitSelectionStrategy: SemVer
       semverConstraint: '>= 1.2.3'
   - image:
-      repoURL: quay.io/christianh814/kargo-demo-app
+      repoURL: ghcr.io/christianh814/kargo-demo-app
       imageSelectionStrategy: SemVer
       semverConstraint: '>= 1.2.3'
