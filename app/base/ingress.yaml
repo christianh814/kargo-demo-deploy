@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  labels:
+    app: kargo-demo-app
+  name: kargo-demo-ing
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: PLACEHOLDER
+      http:
+        paths:
+          - backend:
+              service:
+                name: kargo-demo-app
+                port:
+                  number: 8080
+            path: /
+            pathType: Prefix
