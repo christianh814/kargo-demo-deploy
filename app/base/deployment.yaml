@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: kargo-demo-app
+  name: kargo-demo-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kargo-demo-app
+  template:
+    metadata:
+      labels:
+        app: kargo-demo-app
+    spec:
+      containers:
+      - image: ghcr.io/christianh814/kargo-demo-app:latest
+        name: kargo-demo-app
