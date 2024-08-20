@@ -1,0 +1,9 @@
+configVersion: v1alpha1
+branchConfigs:
+- pattern: env/(\w+)
+  appConfigs:
+    kargoDemo:
+      configManagement:
+        path: app/overlays/${1}
+      outputPath: app
+      combineManifests: true
