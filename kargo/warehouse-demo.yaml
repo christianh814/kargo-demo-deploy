@@ -7,7 +7,7 @@ spec:
   subscriptions:
   - git:
       repoURL: https://github.com/christianh814/kargo-demo-deploy
-      branch: main
+      branch: v0.9
       commitSelectionStrategy: SemVer
       allowTags: '^v\d+\.\d+\.\d+$'
       semverConstraint: '>= 1.2.3'
