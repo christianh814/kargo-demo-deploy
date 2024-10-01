@@ -42,16 +42,16 @@ spec:
        - uses: git-overwrite
          config:
            inPath: ./app
-           outPath: ./out/
+           outPath: ./produsw1/
        - uses: git-commit
          as: commit
          config:
-           path: ./out
+           path: ./produsw1/
            messageFromSteps:
            - update-image
        - uses: git-push
          config:
-           path: ./out
+           path: ./produsw1/
            targetBranch: stage/test
        - uses: argocd-update
          config:
