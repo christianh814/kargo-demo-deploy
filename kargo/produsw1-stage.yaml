@@ -17,10 +17,47 @@ spec:
   verification:
     analysisTemplates:
     - name: kargo-demo
-  promotionMechanisms:
-    argoCDAppUpdates:
-    - appName: produsw1-app
-    gitRepoUpdates:
-    - repoURL: https://github.com/christianh814/kargo-demo-deploy
-      writeBranch: env/produsw1
-      render: {}
+  promotionTemplate:
+     spec:
+       steps:
+       - uses: git-clone
+         config:
+           repoURL: https://github.com/christianh814/kargo-demo-deploy
+           checkout:
+           - branch: v0.9
+             path: ./main
+           - branch: env/produsw1
+             create: true
+             path: ./produsw1
+       - uses: kustomize-set-image
+         as: update-image
+         config:
+           path: ./main/app/overlays/produsw1
+           images:
+           - image: ghcr.io/christianh814/kargo-demo-app
+       - uses: kustomize-build
+         config:
+           path: ./main/app/overlays/produsw1
+           outPath: ./app/manifests.yaml  
+       - uses: git-overwrite
+         config:
+           inPath: ./app
+           outPath: ./produsw1/
+       - uses: git-commit
+         as: commit
+         config:
+           path: ./produsw1/
+           messageFromSteps:
+           - update-image
+       - uses: git-push
+         config:
+           path: ./produsw1/
+           targetBranch: stage/test
+       - uses: argocd-update
+         config:
+           apps:
+           - name: produsw1-app
+             namespace: argocd
+             sources:
+             - repoURL: https://github.com/christianh814/kargo-demo-deploy
+               desiredCommitFromStep: commit
