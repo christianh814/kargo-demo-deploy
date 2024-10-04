@@ -51,7 +51,7 @@ spec:
        - uses: git-push
          config:
            path: ./test
-           targetBranch: env/test
+           #targetBranch: env/test
            generateTargetBranch: true
        - uses: argocd-update
          config:
