@@ -7,7 +7,7 @@ spec:
   generators:
   - git:
       repoURL: https://github.com/christianh814/kargo-demo-deploy
-      revision: v0.9
+      revision: main
       directories:
       - path: app/overlays/*
   template:
