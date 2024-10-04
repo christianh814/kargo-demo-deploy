@@ -52,6 +52,7 @@ spec:
          config:
            path: ./test
            targetBranch: stage/test
+           generateTargetBranch: true
        - uses: argocd-update
          config:
            apps:

@@ -53,6 +53,7 @@ spec:
          config:
            path: ./produsw1/
            targetBranch: stage/test
+           generateTargetBranch: true
        - uses: argocd-update
          config:
            apps:
