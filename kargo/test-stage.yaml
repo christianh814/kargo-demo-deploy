@@ -23,7 +23,7 @@ spec:
          config:
            repoURL: https://github.com/christianh814/kargo-demo-deploy
            checkout:
-           - branch: v0.9
+           - branch: main
              path: ./main
            - branch: env/test
              create: true
