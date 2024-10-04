@@ -51,7 +51,7 @@ spec:
        - uses: git-push
          config:
            path: ./uat
-           targetBranch: stage/test
+           targetBranch: env/uat
            generateTargetBranch: true
        - uses: argocd-update
          config:
