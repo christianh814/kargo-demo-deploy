@@ -52,8 +52,7 @@ spec:
        - uses: git-push
          config:
            path: ./produsw2
-           #targetBranch: env/produsw2
-           generateTargetBranch: true
+           targetBranch: env/produsw2
        - uses: argocd-update
          config:
            apps:
