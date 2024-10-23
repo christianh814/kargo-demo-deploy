@@ -41,7 +41,7 @@ spec:
        - uses: kustomize-build
          config:
            path: ./main/app/overlays/produsw2
-           outPath: ./dev/
+           outPath: ./produsw2/
        - uses: git-commit
          as: commit
          config:

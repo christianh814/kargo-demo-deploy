@@ -40,7 +40,7 @@ spec:
        - uses: kustomize-build
          config:
            path: ./main/app/overlays/test
-           outPath: ./dev/
+           outPath: ./test/
        - uses: git-commit
          as: commit
          config:
