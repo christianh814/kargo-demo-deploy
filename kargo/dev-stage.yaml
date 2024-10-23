@@ -36,7 +36,7 @@ spec:
        - uses: kustomize-build
          config:
            path: ./main/app/overlays/dev
-           outPath: ./app/manifests.yaml  
+           outPath: ./dev/app/manifests.yaml  
        - uses: git-clear
          config:
            path: ./dev/
