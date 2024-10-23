@@ -1,0 +1,6 @@
+apiVersion: v1
+data:
+  greet.json: '{"message":"Kargo is an awesome tool to use in PRODUCTION!"}'
+kind: ConfigMap
+metadata:
+  name: kargo-demo-app-config-t7c8b4g4g2
