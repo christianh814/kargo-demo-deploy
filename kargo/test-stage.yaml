@@ -28,6 +28,9 @@ spec:
            - branch: env/test
              create: true
              path: ./test
+       - uses: git-clear
+         config:
+           path: ./test/
        - uses: kustomize-set-image
          as: update-image
          config:
@@ -38,9 +41,6 @@ spec:
          config:
            path: ./main/app/overlays/test
            outPath: ./dev/
-       - uses: git-clear
-         config:
-           path: ./test/
        - uses: git-commit
          as: commit
          config:

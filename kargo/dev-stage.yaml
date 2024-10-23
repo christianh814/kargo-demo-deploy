@@ -27,6 +27,9 @@ spec:
            - branch: env/dev
              create: true
              path: ./dev
+       - uses: git-clear
+         config:
+           path: ./dev/
        - uses: kustomize-set-image
          as: update-image
          config:
@@ -37,9 +40,6 @@ spec:
          config:
            path: ./main/app/overlays/dev
            outPath: ./dev/
-       - uses: git-clear
-         config:
-           path: ./dev/
        - uses: git-commit
          as: commit
          config:

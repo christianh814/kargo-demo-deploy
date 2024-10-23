@@ -28,6 +28,9 @@ spec:
            - branch: env/uat
              create: true
              path: ./uat
+       - uses: git-clear
+         config:
+           path: ./uat/
        - uses: kustomize-set-image
          as: update-image
          config:
@@ -38,9 +41,6 @@ spec:
          config:
            path: ./main/app/overlays/uat
            outPath: ./dev/
-       - uses: git-clear
-         config:
-           path: ./uat/
        - uses: git-commit
          as: commit
          config:

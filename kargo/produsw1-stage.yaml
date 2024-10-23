@@ -29,6 +29,9 @@ spec:
            - branch: env/produsw1
              create: true
              path: ./produsw1
+       - uses: git-clear
+         config:
+           path: ./produsw1/
        - uses: kustomize-set-image
          as: update-image
          config:
@@ -39,9 +42,6 @@ spec:
          config:
            path: ./main/app/overlays/produsw1
            outPath: ./dev/
-       - uses: git-clear
-         config:
-           path: ./produsw1/
        - uses: git-commit
          as: commit
          config:
