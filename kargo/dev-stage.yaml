@@ -37,10 +37,9 @@ spec:
          config:
            path: ./main/app/overlays/dev
            outPath: ./app/manifests.yaml  
-       - uses: git-overwrite
+       - uses: git-clear
          config:
-           inPath: ./app
-           outPath: ./dev/
+           path: ./dev/
        - uses: git-commit
          as: commit
          config:

@@ -39,10 +39,9 @@ spec:
          config:
            path: ./main/app/overlays/produsw1
            outPath: ./app/manifests.yaml  
-       - uses: git-overwrite
+       - uses: git-clear
          config:
-           inPath: ./app
-           outPath: ./produsw1/
+           path: ./produsw1/
        - uses: git-commit
          as: commit
          config:
