@@ -38,7 +38,7 @@ spec:
        - uses: kustomize-build
          config:
            path: ./main/app/overlays/produsw2
-           outPath: ./dev/app/manifests.yaml
+           outPath: ./dev/
        - uses: git-clear
          config:
            path: ./produsw2/
