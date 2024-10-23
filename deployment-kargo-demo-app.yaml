@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    chx-version: v1.0
+  labels:
+    app: kargo-demo-app
+  name: kargo-demo-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kargo-demo-app
+  template:
+    metadata:
+      annotations:
+        chx-version: v1.0
+      labels:
+        app: kargo-demo-app
+    spec:
+      containers:
+      - image: ghcr.io/christianh814/kargo-demo-app:v1.2.4
+        name: kargo-demo-app
+        volumeMounts:
+        - mountPath: /app/config
+          name: config-file
+      volumes:
+      - configMap:
+          name: kargo-demo-app-config-9m4d8g464k
+        name: config-file
