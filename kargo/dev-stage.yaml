@@ -36,6 +36,7 @@ spec:
            path: ./main/app/overlays/dev
            images:
            - image: ghcr.io/christianh814/kargo-demo-app
+             tag: ${{ imageFrom("ghcr.io/christianh814/kargo-demo-app").Tag }}
        - uses: kustomize-build
          config:
            path: ./main/app/overlays/dev
@@ -57,4 +58,4 @@ spec:
              namespace: argocd
              sources:
              - repoURL: https://github.com/christianh814/kargo-demo-deploy
-               desiredCommitFromStep: commit
+               desiredRevision: ${{ outputs.commit.commit }}
