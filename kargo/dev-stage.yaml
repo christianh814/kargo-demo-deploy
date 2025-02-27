@@ -1,3 +1,4 @@
+---
 apiVersion: kargo.akuity.io/v1alpha1
 kind: Stage
 metadata:
@@ -16,46 +17,11 @@ spec:
     analysisTemplates:
     - name: kargo-demo
   promotionTemplate:
-     spec:
-       steps:
-       - uses: git-clone
-         config:
-           repoURL: https://github.com/christianh814/kargo-demo-deploy
-           checkout:
-           - branch: main
-             path: ./main
-           - branch: env/dev
-             create: true
-             path: ./dev
-       - uses: git-clear
-         config:
-           path: ./dev/
-       - uses: kustomize-set-image
-         as: update-image
-         config:
-           path: ./main/app/overlays/dev
-           images:
-           - image: ghcr.io/christianh814/kargo-demo-app
-             tag: ${{ imageFrom("ghcr.io/christianh814/kargo-demo-app").Tag }}
-       - uses: kustomize-build
-         config:
-           path: ./main/app/overlays/dev
-           outPath: ./dev/
-       - uses: git-commit
-         as: commit
-         config:
-           path: ./dev
-           messageFromSteps:
-           - update-image
-       - uses: git-push
-         config:
-           path: ./dev
-           targetBranch: env/dev
-       - uses: argocd-update
-         config:
-           apps:
-           - name: dev-app
-             namespace: argocd
-             sources:
-             - repoURL: https://github.com/christianh814/kargo-demo-deploy
-               desiredRevision: ${{ outputs.commit.commit }}
+    spec:
+      vars:
+      - name: targetBranch
+        value: dev
+      steps:
+      - task:
+          name: default-promote
+        as: promote-to-dev

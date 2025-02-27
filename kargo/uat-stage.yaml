@@ -17,46 +17,11 @@ spec:
     analysisTemplates:
     - name: kargo-demo
   promotionTemplate:
-     spec:
-       steps:
-       - uses: git-clone
-         config:
-           repoURL: https://github.com/christianh814/kargo-demo-deploy
-           checkout:
-           - branch: main
-             path: ./main
-           - branch: env/uat
-             create: true
-             path: ./uat
-       - uses: git-clear
-         config:
-           path: ./uat/
-       - uses: kustomize-set-image
-         as: update-image
-         config:
-           path: ./main/app/overlays/uat
-           images:
-           - image: ghcr.io/christianh814/kargo-demo-app
-             tag: ${{ imageFrom("ghcr.io/christianh814/kargo-demo-app").Tag }}
-       - uses: kustomize-build
-         config:
-           path: ./main/app/overlays/uat
-           outPath: ./uat/
-       - uses: git-commit
-         as: commit
-         config:
-           path: ./uat
-           messageFromSteps:
-           - update-image
-       - uses: git-push
-         config:
-           path: ./uat
-           targetBranch: env/uat
-       - uses: argocd-update
-         config:
-           apps:
-           - name: uat-app
-             namespace: argocd
-             sources:
-             - repoURL: https://github.com/christianh814/kargo-demo-deploy
-               desiredRevision: ${{ outputs.commit.commit }}
+    spec:
+      vars:
+      - name: targetBranch
+        value: uat
+      steps:
+      - task:
+          name: default-promote
+        as: promote-to-uat

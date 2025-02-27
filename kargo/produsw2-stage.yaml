@@ -18,46 +18,11 @@ spec:
     analysisTemplates:
     - name: kargo-demo
   promotionTemplate:
-     spec:
-       steps:
-       - uses: git-clone
-         config:
-           repoURL: https://github.com/christianh814/kargo-demo-deploy
-           checkout:
-           - branch: main
-             path: ./main
-           - branch: env/produsw2
-             create: true
-             path: ./produsw2
-       - uses: git-clear
-         config:
-           path: ./produsw2/
-       - uses: kustomize-set-image
-         as: update-image
-         config:
-           path: ./main/app/overlays/produsw2
-           images:
-           - image: ghcr.io/christianh814/kargo-demo-app
-             tag: ${{ imageFrom("ghcr.io/christianh814/kargo-demo-app").Tag }}
-       - uses: kustomize-build
-         config:
-           path: ./main/app/overlays/produsw2
-           outPath: ./produsw2/
-       - uses: git-commit
-         as: commit
-         config:
-           path: ./produsw2
-           messageFromSteps:
-           - update-image
-       - uses: git-push
-         config:
-           path: ./produsw2
-           targetBranch: env/produsw2
-       - uses: argocd-update
-         config:
-           apps:
-           - name: produsw2-app
-             namespace: argocd
-             sources:
-             - repoURL: https://github.com/christianh814/kargo-demo-deploy
-               desiredRevision: ${{ outputs.commit.commit }}
+    spec:
+      vars:
+      - name: targetBranch
+        value: produsw2
+      steps:
+      - task:
+          name: default-promote
+        as: promote-to-produsw2

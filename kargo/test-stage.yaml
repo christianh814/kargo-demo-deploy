@@ -17,46 +17,11 @@ spec:
     analysisTemplates:
     - name: kargo-demo
   promotionTemplate:
-     spec:
-       steps:
-       - uses: git-clone
-         config:
-           repoURL: https://github.com/christianh814/kargo-demo-deploy
-           checkout:
-           - branch: main
-             path: ./main
-           - branch: env/test
-             create: true
-             path: ./test
-       - uses: git-clear
-         config:
-           path: ./test/
-       - uses: kustomize-set-image
-         as: update-image
-         config:
-           path: ./main/app/overlays/test
-           images:
-           - image: ghcr.io/christianh814/kargo-demo-app
-             tag: ${{ imageFrom("ghcr.io/christianh814/kargo-demo-app").Tag }}
-       - uses: kustomize-build
-         config:
-           path: ./main/app/overlays/test
-           outPath: ./test/
-       - uses: git-commit
-         as: commit
-         config:
-           path: ./test
-           messageFromSteps:
-           - update-image
-       - uses: git-push
-         config:
-           path: ./test
-           targetBranch: env/test
-       - uses: argocd-update
-         config:
-           apps:
-           - name: test-app
-             namespace: argocd
-             sources:
-             - repoURL: https://github.com/christianh814/kargo-demo-deploy
-               desiredRevision: ${{ outputs.commit.commit }}
+    spec:
+      vars:
+      - name: targetBranch
+        value: test
+      steps:
+      - task:
+          name: default-promote
+        as: promote-to-test

@@ -1,0 +1,70 @@
+apiVersion: kargo.akuity.io/v1alpha1
+kind: PromotionTask
+metadata:
+  name: default-promote
+  namespace: kargo-demo
+spec:
+  vars:
+  - name: repoURL
+    value: https://github.com/christianh814/kargo-demo-deploy
+  - name: sourceBranch
+    value: main
+  - name: sourceImage
+    value: ghcr.io/christianh814/kargo-demo-app
+  - name: targetBranch
+
+  steps:
+
+  - uses: git-clone
+    as: clone
+    config:
+      repoURL: ${{ vars.repoURL }}
+      checkout:
+      - branch: ${{ vars.sourceBranch }}
+        path: ./src
+      - branch: env/${{ vars.targetBranch }}
+        create: true
+        path: ./dst
+
+  - uses: git-clear
+    as: clear
+    config:
+      path: ./dst
+
+  - uses: kustomize-set-image
+    as: update-image
+    config:
+      path: ./src/app/overlays/${{ vars.targetBranch }}
+      images:
+      - image: ${{ vars.sourceImage }}
+        tag: ${{ imageFrom(vars.sourceImage).Tag }}
+
+  - uses: kustomize-build
+    as: build-manifests
+    config:
+      path: ./src/app/overlays/${{ vars.targetBranch }}
+      outPath: ./dst/${{ vars.targetBranch }}.yaml
+
+  - uses: git-commit
+    as: commit
+    config:
+      path: ./dst
+      messageFromSteps:
+      - update-image
+      - build-manifests
+
+  - uses: git-push
+    as: push
+    config:
+      path: ./dst
+      targetBranch: env/${{ vars.targetBranch }}
+
+  - uses: argocd-update
+    as: sync-argocd
+    config:
+      apps:
+      - name: ${{ vars.targetBranch }}-app
+        namespace: argocd
+        sources:
+        - repoURL: ${{ vars.repoURL }}
+          desiredRevision: ${{ task.outputs.commit.commit }}
