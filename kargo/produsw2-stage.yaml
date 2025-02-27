@@ -1,0 +1,62 @@
+---
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Stage
+metadata:
+  name: produsw2
+  namespace: kargo-demo
+  annotations:
+    kargo.akuity.io/color: purple
+spec:
+  requestedFreight:
+  - origin:
+      kind: Warehouse
+      name: kargo-demo
+    sources:
+      stages:
+      - uat
+  verification:
+    analysisTemplates:
+    - name: kargo-demo
+  promotionTemplate:
+     spec:
+       steps:
+       - uses: git-clone
+         config:
+           repoURL: https://github.com/christianh814/kargo-demo-deploy
+           checkout:
+           - branch: main
+             path: ./main
+           - branch: env/produsw2
+             create: true
+             path: ./produsw2
+       - uses: git-clear
+         config:
+           path: ./produsw2/
+       - uses: kustomize-set-image
+         as: update-image
+         config:
+           path: ./main/app/overlays/produsw2
+           images:
+           - image: ghcr.io/christianh814/kargo-demo-app
+       - uses: kustomize-build
+         config:
+           path: ./main/app/overlays/produsw2
+           outPath: ./produsw2/
+       - uses: git-commit
+         as: commit
+         config:
+           path: ./produsw2
+           messageFromSteps:
+           - update-image
+       - uses: git-push
+         config:
+           path: ./produsw2
+           targetBranch: env/produsw2
+       - uses: argocd-update
+         config:
+           apps:
+           - name: produsw2-app
+             namespace: argocd
+             sources:
+             - repoURL: https://github.com/christianh814/kargo-demo-deploy
+               desiredCommitFromStep: commit
