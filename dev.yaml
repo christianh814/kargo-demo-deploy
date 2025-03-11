@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    chx-version: v1.0
+  labels:
+    app: kargo-demo-app
+  name: kargo-demo-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kargo-demo-app
+  template:
+    metadata:
+      annotations:
+        chx-version: v1.0
+      labels:
+        app: kargo-demo-app
+    spec:
+      containers:
+      - image: ghcr.io/christianh814/kargo-demo-app:v1.2.3
+        name: kargo-demo-app
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    chx-version: v1.0
+  labels:
+    app: kargo-demo-app
+  name: kargo-demo-app
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: kargo-demo-app
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    chx-version: v1.0
+  labels:
+    app: kargo-demo-app
+  name: kargo-demo-ing
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: dev.7f000001.nip.io
+    http:
+      paths:
+      - backend:
+          service:
+            name: kargo-demo-app
+            port:
+              number: 8080
+        path: /
+        pathType: Prefix
