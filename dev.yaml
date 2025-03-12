@@ -19,7 +19,7 @@ spec:
         app: kargo-demo-app
     spec:
       containers:
-      - image: ghcr.io/christianh814/kargo-demo-app:v1.2.4
+      - image: ghcr.io/christianh814/kargo-demo-app:v1.2.3
         name: kargo-demo-app
         volumeMounts:
         - mountPath: /app/config
