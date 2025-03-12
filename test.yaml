@@ -19,8 +19,15 @@ spec:
         app: kargo-demo-app
     spec:
       containers:
-      - image: ghcr.io/christianh814/kargo-demo-app:v1.2.3
+      - image: ghcr.io/christianh814/kargo-demo-app:v1.2.4
         name: kargo-demo-app
+        volumeMounts:
+        - mountPath: /app/config
+          name: config-file
+      volumes:
+      - configMap:
+          name: kargo-demo-app-config-9m4d8g464k
+        name: config-file
 ---
 apiVersion: v1
 kind: Service
@@ -59,3 +66,10 @@ spec:
               number: 8080
         path: /
         pathType: Prefix
+---
+apiVersion: v1
+data:
+  greet.json: '{"message":"Kargo is an awesome tool...but in the TEST env!"}'
+kind: ConfigMap
+metadata:
+  name: kargo-demo-app-config-9m4d8g464k
